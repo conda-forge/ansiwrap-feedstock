@@ -1,8 +1,8 @@
 {% set name = "ansiwrap" %}
-{% set version = "0.8.3" %}
+{% set version = "0.8.4" %}
 {% set bundle = "zip" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "f56a4af84f7a8200296ae0e7f0c0cd24d54eb3eab9d37f689e1b92eed6b58d7f" %}
+{% set hash_value = "ca0c740734cde59bf919f8ff2c386f74f9a369818cdc60efe94893d01ea8d9b7" %}
 
 package:
   name: {{ name|lower }}
