@@ -20,11 +20,11 @@ build:
 
 requirements:
   build:
-    - python
+    - python <3.12
     - pip
     
   run:
-    - python
+    - python <3.12
     - textwrap3
 
 test:
