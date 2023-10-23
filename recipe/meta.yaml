@@ -34,7 +34,7 @@ test:
 
 about:
   home: https://github.com/jonathaneunice/ansiwrap
-  license: Apache 2.0
+  license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE.txt
   summary: textwrap, but savvy to ANSI colors and styles
