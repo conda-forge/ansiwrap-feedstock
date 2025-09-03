@@ -1,0 +1,34 @@
+diff --git a/ansiwrap/core.py b/ansiwrap/core.py
+index 88ff453..99d0f44 100644
+--- a/ansiwrap/core.py
++++ b/ansiwrap/core.py
+@@ -3,12 +3,12 @@
+ from ansiwrap.ansistate import ANSIState
+ import re
+ import sys
+-import imp
++import importlib
+ 
+ # import a copy of textwrap3 which we will viciously monkey-patch
+ # to use our version of len, not the built-in
+ import os
+-a_textwrap = imp.load_module('a_textwrap', *imp.find_module('textwrap3'))
++a_textwrap = importlib.import_module('textwrap3')
+ 
+ 
+ __all__ = 'wrap fill shorten strip_color ansilen ansi_terminate_lines'.split()
+diff --git a/test/test_ansiwrap.py b/test/test_ansiwrap.py
+index 13e7149..bf7456e 100644
+--- a/test/test_ansiwrap.py
++++ b/test/test_ansiwrap.py
+@@ -20,8 +20,8 @@
+ 
+ # as an alternative to testing all lengths at all times, which is slow,
+ # choose a few other lengths at random
+-other_lengths = (random.sample(set(range(20, 120)).difference(LINE_LENGTHS), 2) +
+-                 random.sample(set(range(120, 400)).difference(LINE_LENGTHS), 1))
++other_lengths = (random.sample(list(set(range(20, 120)).difference(LINE_LENGTHS)), 2) +
++                 random.sample(list(set(range(120, 400)).difference(LINE_LENGTHS)), 1))
+ LINE_LENGTHS.extend(other_lengths)
+ 
+ 
