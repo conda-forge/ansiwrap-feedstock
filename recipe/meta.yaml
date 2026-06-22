@@ -1,8 +1,6 @@
 {% set name = "ansiwrap" %}
 {% set version = "0.8.4" %}
 {% set bundle = "zip" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "ca0c740734cde59bf919f8ff2c386f74f9a369818cdc60efe94893d01ea8d9b7" %}
 
 package:
   name: {{ name|lower }}
@@ -11,29 +9,33 @@ package:
 source:
   fn: {{ name }}-{{ version }}.{{ bundle }}
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ bundle }}
-  {{ hash_type }}: {{ hash_value }}
+  sha256: ca0c740734cde59bf919f8ff2c386f74f9a369818cdc60efe94893d01ea8d9b7
+  patches:
+    - py312.patch
 
 build:
-  number: 0
+  number: 1
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
-    - python
+  host:
+    - python {{ python_min }}
     - pip
-    
+    - setuptools
   run:
-    - python
+    - python >={{ python_min }}
     - textwrap3
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - ansiwrap
 
 about:
   home: https://github.com/jonathaneunice/ansiwrap
-  license: Apache 2.0
+  license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE.txt
   summary: textwrap, but savvy to ANSI colors and styles
